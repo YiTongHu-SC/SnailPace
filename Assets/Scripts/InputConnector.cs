@@ -6,30 +6,17 @@ using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(ButtonPresentation))]
     public class InputConnector : MonoBehaviour
     {
-        [SerializeField] private Image KeyUp;
-        [SerializeField] private Image keyDown;
-
+        private ButtonPresentation _buttonPresentation;
         private SkillComponent _current;
         private bool _interactable;
 
         private void Awake()
         {
             _interactable = false;
-        }
-
-        private void Start()
-        {
-            if (KeyUp)
-            {
-                KeyUp.gameObject.SetActive(true);
-            }
-
-            if (keyDown)
-            {
-                keyDown.gameObject.SetActive(false);
-            }
+            _buttonPresentation = GetComponent<ButtonPresentation>();
         }
 
         public void InputCallBack(InputAction.CallbackContext context)
@@ -46,8 +33,7 @@ namespace DefaultNamespace
                     {
                         case GameStatus.Encounter:
                             // Debug.Log(context.action.name + " " + "Started");
-                            KeyUp.gameObject.SetActive(false);
-                            keyDown.gameObject.SetActive(true);
+                            _buttonPresentation.SetPressStatus(true);
                             if (!_interactable)
                             {
                                 return;
@@ -63,8 +49,7 @@ namespace DefaultNamespace
                     break;
                 case InputActionPhase.Canceled:
                     // Debug.Log(context.action.name + " " + "Canceled");
-                    KeyUp.gameObject.SetActive(true);
-                    keyDown.gameObject.SetActive(false);
+                    _buttonPresentation.SetPressStatus(false);
                     if (!_interactable)
                     {
                         return;

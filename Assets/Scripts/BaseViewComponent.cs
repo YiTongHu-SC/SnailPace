@@ -11,6 +11,7 @@ namespace DefaultNamespace
     [RequireComponent(typeof(ViewPanelsManagement))]
     public class BaseViewComponent : MonoBehaviour
     {
+        [SerializeField] private ButtonPresentation ButtonPresentation;
         public GameObject ShowCanvas;
         public Image MaskImage;
         private ViewPanelsManagement _viewPanelsManagement;
@@ -33,6 +34,7 @@ namespace DefaultNamespace
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
+                    ButtonPresentation.SetPressStatus(true);
                     if (IsOpened)
                     {
                         EnableView(false);
@@ -44,6 +46,9 @@ namespace DefaultNamespace
                         EnableView(true);
                     }
 
+                    break;
+                case InputActionPhase.Canceled:
+                    ButtonPresentation.SetPressStatus(false);
                     break;
             }
         }
