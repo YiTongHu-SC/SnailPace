@@ -65,7 +65,7 @@ namespace DefaultNamespace
             }
             else
             {
-                SetPanelAlpha(0.7f);
+                SetPanelAlpha(0.8f);
                 MaskImage.DOFade(0, 0.2f);
                 StartCoroutine(DeActiveDelay(0.2f));
             }
