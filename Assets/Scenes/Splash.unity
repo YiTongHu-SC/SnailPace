@@ -944,30 +944,6 @@ MonoBehaviour:
     m_ActionName: MainKeyboard/OnRefreshSkills[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5c828ae7-a003-4372-8658-e6cda3f43496
-    m_ActionName: MainKeyboard/OnViewSkills[/Keyboard/c]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8a52df67-3223-4cb1-84c7-42facd657af4
-    m_ActionName: MainKeyboard/Help[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 679080842}
-        m_TargetAssemblyTypeName: DefaultNamespace.StartGameUI, Assembly-CSharp
-        m_MethodName: OnStartGame
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d12e9cee-123d-4f40-919e-b018d92c5e8b
-    m_ActionName: MainKeyboard/StartGame[/Keyboard/anyKey]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c4a82dc7-9d1f-41b2-92c9-eb93458fcd06
     m_ActionName: MainKeyboard/ChooseReward1[/Keyboard/1]
   - m_PersistentCalls:
@@ -982,9 +958,37 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4f8f64a2-6843-475b-9123-632ab860e7eb
     m_ActionName: MainKeyboard/SkipSkill[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 38cd0272-c6b7-4216-b7fe-68f0e91019ba
+    m_ActionName: Menu/OnViewBuffs[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6546e79d-3869-48a3-b6fe-2abfb67853b1
+    m_ActionName: Menu/OnViewHelp[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e4a8302-cf1f-4a20-92ff-6148d5c5753b
+    m_ActionName: Menu/OnViewSkills[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 679080842}
+        m_TargetAssemblyTypeName: DefaultNamespace.StartGameUI, Assembly-CSharp
+        m_MethodName: OnStartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 01e242fd-212e-495f-af4e-8bfc0d951b79
+    m_ActionName: Menu/StartGame[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: MainKeyboard
+  m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &679080842

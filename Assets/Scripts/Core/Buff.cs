@@ -8,7 +8,7 @@ namespace Core
 {
     public enum BuffType
     {
-        Week,
+        Weak,
         Enhancement,
         Vulnerable,
         Cure,

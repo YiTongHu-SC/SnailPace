@@ -2,7 +2,7 @@
     "name": "SnailPaceInput",
     "maps": [
         {
-            "name": "MainKeyboard",
+            "name": "Skills",
             "id": "5a79cf07-f162-466b-af79-8c6415362cf6",
             "actions": [
                 {
@@ -36,33 +36,6 @@
                     "name": "OnRefreshSkills",
                     "type": "Button",
                     "id": "5666f74b-ed0e-4965-9532-bbd30031e966",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "OnViewSkills",
-                    "type": "Button",
-                    "id": "5c828ae7-a003-4372-8658-e6cda3f43496",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Help",
-                    "type": "Button",
-                    "id": "8a52df67-3223-4cb1-84c7-42facd657af4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "StartGame",
-                    "type": "Button",
-                    "id": "d12e9cee-123d-4f40-919e-b018d92c5e8b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -152,39 +125,6 @@
                 },
                 {
                     "name": "",
-                    "id": "51909f7a-b184-4ff9-8570-dd16c54cc197",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OnViewSkills",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3547c58b-7462-4879-addd-de29e94f93cf",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Help",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "08e21593-ff02-41f4-8984-c2012b4e6b63",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "StartGame",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d4fc3371-742a-464b-b673-3ce603203691",
                     "path": "<Keyboard>/f1",
                     "interactions": "",
@@ -224,6 +164,94 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "ef5e6ab2-04db-4540-999f-1879bd86bd98",
+            "actions": [
+                {
+                    "name": "OnViewBuffs",
+                    "type": "Button",
+                    "id": "38cd0272-c6b7-4216-b7fe-68f0e91019ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OnViewHelp",
+                    "type": "Button",
+                    "id": "6546e79d-3869-48a3-b6fe-2abfb67853b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OnViewSkills",
+                    "type": "Button",
+                    "id": "3e4a8302-cf1f-4a20-92ff-6148d5c5753b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartGame",
+                    "type": "Button",
+                    "id": "01e242fd-212e-495f-af4e-8bfc0d951b79",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5a09eba-d2a8-42cf-b6be-f3b3a9b6ac1c",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnViewSkills",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e462e4b5-d282-4d02-a31d-58cf9d28b90b",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnViewHelp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43003b1d-3e6d-4c3c-ab3b-8eaa9f491540",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnViewBuffs",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42121983-6216-4b07-89ab-fc5c629c21f4",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
