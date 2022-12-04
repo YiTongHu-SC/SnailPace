@@ -716,7 +716,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AutomaticallyUnparentOnAwake: 1
-  MaxEncounters: 15
+  MaxEncounters: 10
+  InitTime: 60
   BuffShowData: {fileID: 11400000, guid: 6de48aa4e5e85d84fb1aea2882e45458, type: 2}
   ShowTipComponent: {fileID: 8316845563592554909, guid: 34d041fabcfdd2d4b8464934caa5d89d, type: 3}
   MinLoadDuration: 1

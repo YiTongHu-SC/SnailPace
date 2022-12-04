@@ -18,5 +18,6 @@ namespace Core
         public UnityAction<SkillReward> OnAddSkill;
         public UnityAction OnGameWinning;
         public UnityAction OnFetchScores;
+        public UnityAction<int> OnStartCountDown;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using Core;
+using DG.Tweening;
 using MoreMountains.Tools;
 using TMPro;
 using UnityEngine;
@@ -8,35 +10,67 @@ namespace DefaultNamespace
 {
     public class RunPanel : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI TextMeshPro;
+        [SerializeField] private TextMeshProUGUI ShowCurrentTimeText;
+        [SerializeField] private TextMeshProUGUI ShowStartCountDownText;
+        [SerializeField] private TextMeshProUGUI AddRunTimeText;
+
+        private void Start()
+        {
+            AddRunTimeText.text = "+10";
+            AddRunTimeText.color = Color.magenta;
+            var color = AddRunTimeText.color;
+            color.a = 0;
+            AddRunTimeText.color = color;
+        }
 
         private void Update()
         {
-            switch (GameManager.Instance.CurrentState)
-            {
-                case GameStatus.Idle:
-                    TextMeshPro.text = GameManager.Instance.CountDown.ToString();
-                    break;
-                case GameStatus.Run:
-                case GameStatus.Encounter:
-                    TextMeshPro.text = GameManager.Instance.RunClock;
-                    break;
-            }
+            ShowCurrentTimeText.text = GameManager.Instance.RunClock;
+        }
+
+        private void ShowCountDown(int count)
+        {
+            ShowStartCountDownText.text = count.ToString();
+            ShowStartCountDownText.fontSize = 10;
+            ShowStartCountDownText.color = Color.white;
+            ShowStartCountDownText.DOFade(0, 0.8f);
+            DOTween.To(() => ShowStartCountDownText.fontSize,
+                (x) => ShowStartCountDownText.fontSize = x,
+                5, 0.4f);
+        }
+
+        private void OnWinning()
+        {
+            ShowCurrentTimeText.text = GameManager.Instance.RunClock;
+        }
+
+        private void OnAddRunTime()
+        {
+            var color = AddRunTimeText.color;
+            color.a = 1;
+            AddRunTimeText.color = color;
+            AddRunTimeText.transform.DOLocalJump(0.5f * Vector3.up, 1, 1, 3f);
+            StartCoroutine(FadeDelay(1f));
+        }
+
+        IEnumerator FadeDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            AddRunTimeText.DOFade(0, 0.5f);
         }
 
         private void OnEnable()
         {
             GameEventManager.Instance.OnGameWinning += OnWinning;
-        }
-
-        private void OnWinning()
-        {
-            TextMeshPro.text = GameManager.Instance.RunClock;
+            GameEventManager.Instance.OnStartCountDown += ShowCountDown;
+            GameEventManager.Instance.OnRunReward += OnAddRunTime;
         }
 
         private void OnDisable()
         {
             GameEventManager.Instance.OnGameWinning -= OnWinning;
+            GameEventManager.Instance.OnStartCountDown -= ShowCountDown;
+            GameEventManager.Instance.OnRunReward -= OnAddRunTime;
         }
     }
 }

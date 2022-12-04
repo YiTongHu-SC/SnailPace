@@ -48,6 +48,7 @@ namespace Core
     public class GameManager : MMPersistentSingleton<GameManager>
     {
         [SerializeField] public int MaxEncounters;
+        [SerializeField] public float InitTime;
         [SerializeField] public BuffShowData BuffShowData;
         [SerializeField] public ShowTipComponent ShowTipComponent;
         [SerializeField] private float MinLoadDuration;
@@ -111,7 +112,6 @@ namespace Core
 
         private void Start()
         {
-            _runClock = 0;
             Application.targetFrameRate = 60;
             Screen.SetResolution(ScreenWidth, ScreenHeight, true);
             _stateMachine.SetCurrent(GameStatus.Splash);
@@ -171,7 +171,13 @@ namespace Core
             {
                 case GameStatus.Run:
                 case GameStatus.Encounter:
-                    _runClock += Time.fixedDeltaTime;
+                    _runClock -= Time.fixedDeltaTime;
+                    if (_runClock <= 0)
+                    {
+                        _runClock = 0;
+                        GameEventManager.Instance.OnGameOver?.Invoke();
+                    }
+
                     break;
             }
         }
@@ -225,6 +231,7 @@ namespace Core
 
         private void OnRunReward()
         {
+            _runClock += 10;
             _stateMachine.PerformTransition(GameTransition.Reward);
         }
 
@@ -274,6 +281,8 @@ namespace Core
         {
             private float _timer = 0;
             private const int Duration = 3;
+            private int _countDown;
+            private int _tempCount;
 
             public Idle(GameStatus stateId) : base(stateId)
             {
@@ -282,7 +291,9 @@ namespace Core
             public override void Enter()
             {
                 _timer = Duration;
-                Context.CountDown = Duration;
+                _tempCount = 0;
+                _countDown = Duration;
+                Context._runClock = Context.InitTime;
                 Context.BuffShowData.Initialize();
                 BattleManager.Instance.OnGameStart();
                 // GameEventManager.Instance.OnGameStart.Invoke();
@@ -303,7 +314,12 @@ namespace Core
             public override void Act(float deltaTime = 0)
             {
                 _timer -= deltaTime;
-                Context.CountDown = 1 + (int)_timer;
+                _countDown = 1 + (int)_timer;
+                if (_countDown != _tempCount)
+                {
+                    _tempCount = _countDown;
+                    GameEventManager.Instance.OnStartCountDown.Invoke(_countDown);
+                }
             }
         }
 
@@ -394,7 +410,6 @@ namespace Core
             public override void Exit()
             {
                 Context._isPaused = false;
-                Context._runClock = 0;
             }
 
             public override void Reason(float deltaTime = 0)
@@ -423,7 +438,6 @@ namespace Core
             public override void Exit()
             {
                 Context._isPaused = false;
-                Context._runClock = 0;
             }
 
             public override void Reason(float deltaTime = 0)
