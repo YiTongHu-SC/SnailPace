@@ -47,6 +47,14 @@ PrefabInstance:
       propertyPath: CharacterType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6140105974655100054, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
+      propertyPath: m_SpriteKey
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140105974655100055, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 246961352, guid: dd18f33a013478c4987a0552a16a70db, type: 3}
     - target: {fileID: 6140105975915262992, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -98,6 +106,10 @@ PrefabInstance:
     - target: {fileID: 6186424825793187805, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_LocalScale.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186424825793187805, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8416081440247500314, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_RootOrder
