@@ -49,8 +49,9 @@ namespace DefaultNamespace
             var color = AddRunTimeText.color;
             color.a = 1;
             AddRunTimeText.color = color;
-            AddRunTimeText.transform.DOLocalJump(0.5f * Vector3.up, 1, 1, 3f);
-            StartCoroutine(FadeDelay(1f));
+            AddRunTimeText.transform.localPosition = Vector3.zero;
+            AddRunTimeText.transform.DOLocalMoveY(0.5f, 1f);
+            StartCoroutine(FadeDelay(2f));
         }
 
         IEnumerator FadeDelay(float delay)
