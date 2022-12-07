@@ -240,7 +240,7 @@ namespace Core
 
         private void OnRunReward()
         {
-            ChoosePanel.DOFade(0.5f, 0.3f);
+            ChoosePanel.DOFade(0.6f, 0.3f);
             // EnemyStatus.Initialize(null);
             EnemyStatus.ShowBox(false);
         }

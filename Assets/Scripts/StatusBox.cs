@@ -1,5 +1,6 @@
 ﻿using System;
 using Core;
+using DG.Tweening;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -25,6 +26,7 @@ namespace DefaultNamespace
 
         public void ShowBox(bool enable)
         {
+            transform.DOMoveX(enable ? 0 : 10, 0.5f);
         }
     }
 }
