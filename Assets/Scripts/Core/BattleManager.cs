@@ -427,26 +427,22 @@ namespace Core
         {
             yield return new WaitForSeconds(delay);
             List<SkillComponent> skills = new List<SkillComponent>();
-            switch (GameManager.Instance.CurrentState)
+
+            foreach (var skill in _hero.BehaviourController.CurrentSkills)
             {
-                case GameStatus.Encounter:
-                    foreach (var skill in _hero.BehaviourController.CurrentSkills)
-                    {
-                        skills.Add(skill);
-                    }
-
-                    skills.Shuffle();
-                    int num = Mathf.Min(3, skills.Count);
-                    for (int i = 0; i < num; i++)
-                    {
-                        skills[i].Initialize();
-                        skills[i].SetFollow(_loopSockets[i]);
-                        _currentSkills.Add(skills[i]);
-                    }
-
-                    _isRefreshOpen = true;
-                    break;
+                skills.Add(skill);
             }
+
+            skills.Shuffle();
+            int num = Mathf.Min(3, skills.Count);
+            for (int i = 0; i < num; i++)
+            {
+                skills[i].Initialize();
+                skills[i].SetFollow(_loopSockets[i]);
+                _currentSkills.Add(skills[i]);
+            }
+
+            _isRefreshOpen = true;
         }
 
         public void CheckSkillRefresh()

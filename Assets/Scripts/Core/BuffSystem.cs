@@ -8,7 +8,7 @@ namespace Core
     {
         public static Buff AddBuff<T>(this Character target, BuffType buffType, float duration = -1) where T : Buff
         {
-            if (target.BuffSocket.TryGetComponent(out T buff))
+            if (target && target.BuffSocket.TryGetComponent(out T buff))
             {
                 if (buff.IsBuffActivated)
                 {
