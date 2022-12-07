@@ -1,13 +1,16 @@
+using System;
 using System.Collections.Generic;
 using Core;
 using DefaultNamespace;
 using Lean.Pool;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 class MoveSocketStruct
 {
     public LoopBlock Block;
     public MoveSocketStruct Next;
+    public MoveSocketStruct Prev;
 }
 
 public class LoopMoveGrid : MonoBehaviour
@@ -20,13 +23,15 @@ public class LoopMoveGrid : MonoBehaviour
     private float _passedBlocks;
     private bool _isCompleteGame;
     private int _currentLevel;
+    private bool _doUpdateLoop;
+    private GameObject _lastEnemy;
+    private MoveSocketStruct _lastSocket;
 
     private void Awake()
     {
         _initPositions = new List<Vector3>();
     }
 
-    private GameObject _lastEnemy;
 
     void Start()
     {
@@ -43,14 +48,17 @@ public class LoopMoveGrid : MonoBehaviour
         int num = MoveSocketStructs.Count;
         for (int i = 0; i < num; i++)
         {
-            MoveSocketStructs[i].Next = MoveSocketStructs[(i + num - 1) % num];
+            MoveSocketStructs[i].Next = MoveSocketStructs[(i + num + 1) % num];
+            MoveSocketStructs[i].Prev = MoveSocketStructs[(i + num - 1) % num];
         }
 
-        _endPos = MoveSockets[0].transform.localPosition.x - 0.5f * MoveWidth;
+        // _endPos = MoveSockets[0].transform.localPosition.x - 0.5f * MoveWidth;
+        _lastSocket = MoveSocketStructs[0];
     }
 
     public void OnReset()
     {
+        _doUpdateLoop = false;
         _lastEnemy = null;
         _isCompleteGame = false;
         _passedBlocks = 0;
@@ -76,38 +84,29 @@ public class LoopMoveGrid : MonoBehaviour
 
     public void FixedTick(float deltaTime)
     {
-        if (GameManager.Instance.CurrentState != GameStatus.Run)
-        {
-            return;
-        }
-
-        bool doUpdateLoop = false;
-        MoveSocketStruct lastSocket = new MoveSocketStruct();
         float deltaDistance = BattleManager.Instance.Hero.SpeedComponent.MoveSpeed * deltaTime;
-        foreach (var socket in MoveSocketStructs)
+        int num = MoveSocketStructs.Count;
+        var pos = _lastSocket.Block.transform.localPosition;
+        pos.x -= deltaDistance;
+        _lastSocket.Block.transform.localPosition = pos;
+        var current = _lastSocket;
+        for (int i = 0; i < num - 1; i++)
         {
-            var pos = socket.Block.transform.localPosition;
-            pos.x -= deltaDistance;
-            if (pos.x < _endPos)
-            {
-                doUpdateLoop = true;
-                lastSocket = socket;
-                _passedBlocks += 1;
-            }
-            else
-            {
-                socket.Block.transform.localPosition = pos;
-            }
+            current = current.Next;
+            pos.x += MoveWidth;
+            current.Block.transform.localPosition = pos;
         }
 
-        if (doUpdateLoop)
+        if (_doUpdateLoop)
         {
-            var movePos = lastSocket.Next.Block.transform.localPosition;
+            _doUpdateLoop = false;
+            _passedBlocks += 1;
+            var movePos = _lastSocket.Prev.Block.transform.localPosition;
             movePos.x += MoveWidth;
-            lastSocket.Block.transform.localPosition = movePos;
+            _lastSocket.Block.transform.localPosition = movePos;
             if (_passedBlocks + 3 < GameManager.Instance.MaxEncounters)
             {
-                var encounter = LeanPool.Spawn(GetRandomEnemy(), lastSocket.Block.IncidentSocket);
+                var encounter = LeanPool.Spawn(GetRandomEnemy(), _lastSocket.Block.IncidentSocket);
                 encounter.transform.localPosition = Vector3.zero;
                 encounter.GetComponent<Character>().SetLevel(_currentLevel);
                 _currentLevel += 1;
@@ -117,13 +116,15 @@ public class LoopMoveGrid : MonoBehaviour
                 if (!_isCompleteGame)
                 {
                     _isCompleteGame = true;
-                    var winning = LeanPool.Spawn(BattleManager.Instance.WinningPrefab, lastSocket.Block.IncidentSocket);
+                    var winning = LeanPool.Spawn(BattleManager.Instance.WinningPrefab, _lastSocket.Block.IncidentSocket);
                     winning.transform.localPosition = Vector3.zero;
                 }
             }
+
+            _lastSocket = _lastSocket.Next;
         }
     }
-    
+
     private GameObject GetRandomEnemy()
     {
         int num = BattleManager.Instance.EncounterEnemyData.Enemys.Length;
@@ -141,5 +142,20 @@ public class LoopMoveGrid : MonoBehaviour
         }
 
         return _lastEnemy;
+    }
+
+    private void OnEnable()
+    {
+        GameEventManager.Instance.OnRunEncounter += OnEncounter;
+    }
+
+    private void OnEncounter(Character arg0)
+    {
+        _doUpdateLoop = true;
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.Instance.OnRunEncounter -= OnEncounter;
     }
 }
