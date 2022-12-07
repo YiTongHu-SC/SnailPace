@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -767,7 +779,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Big Clouds_22: 1316984721
-      Big Clouds_23: 1515683164
+      Big Clouds_13: 1238947699
       Big Clouds_18: 476659868
       Big Clouds_12: 232087245
       Big Clouds_5: -1173268535
@@ -793,10 +805,10 @@ TextureImporter:
       Big Clouds_28: 109708717
       Big Clouds_3: -784671166
       Big Clouds_2: -1150183473
+      Big Clouds_15: 1532453404
+      Big Clouds_23: 1515683164
       Big Clouds_8: 1678416971
       Big Clouds_10: 2070700244
-      Big Clouds_13: 1238947699
-      Big Clouds_15: 1532453404
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
