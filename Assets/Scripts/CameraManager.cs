@@ -10,8 +10,8 @@ namespace DefaultNamespace
 {
     public class CameraManager : MonoBehaviour
     {
-        [SerializeField] private int assetsPPU_Run = 120;
-        [SerializeField] private int assetsPPU_Foc = 150;
+        // [SerializeField] private int assetsPPU_Run = 120;
+        // [SerializeField] private int assetsPPU_Foc = 150;
 
         private const float FocusDuration = 0.8f;
 
@@ -27,23 +27,23 @@ namespace DefaultNamespace
         private void Start()
         {
             // _camera.m_Lens.OrthographicSize = _orthoSize;
-            _pixel.assetsPPU = assetsPPU_Run;
+            // _pixel.assetsPPU = assetsPPU_Run;
         }
 
         private void RunContinue()
         {
-            DOTween.To(() => _pixel.assetsPPU,
-                (x) => _pixel.assetsPPU = x,
-                assetsPPU_Run,
-                FocusDuration);
+            // DOTween.To(() => _pixel.assetsPPU,
+            //     (x) => _pixel.assetsPPU = x,
+            //     assetsPPU_Run,
+            //     FocusDuration);
         }
 
         private void RunEncounter(Character target)
         {
-            DOTween.To(() => _pixel.assetsPPU,
-                (x) => _pixel.assetsPPU = x,
-                assetsPPU_Foc,
-                FocusDuration);
+            // DOTween.To(() => _pixel.assetsPPU,
+            //     (x) => _pixel.assetsPPU = x,
+            //     assetsPPU_Foc,
+            //     FocusDuration);
         }
 
         /// <summary>

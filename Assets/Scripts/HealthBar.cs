@@ -20,40 +20,37 @@ namespace DefaultNamespace
 
         private const float Duration = 0.4f;
         private const float Delay = 0.1f;
-        private HealthComponent _healthComponent;
+        private HealthComponent _owner;
 
-        private void Awake()
+        public void Initialize(HealthComponent owner)
         {
-            _healthComponent = GetComponentInParent<HealthComponent>();
-        }
-
-        public void Initialize()
-        {
-            WhiteBarImage.fillAmount = _healthComponent.GetArmorRatio();
-            CurrentRatio = _healthComponent.GetHpRatio();
+            _owner = owner;
+            owner.SetBar(this);
+            WhiteBarImage.fillAmount = _owner.GetArmorRatio();
+            CurrentRatio = _owner.GetHpRatio();
             HealthBarImage.fillAmount = CurrentRatio;
             DamageBarImage.fillAmount = CurrentRatio;
-            HealthAmount.text = _healthComponent.RoundHp
+            HealthAmount.text = _owner.RoundHp
                                 + "/"
-                                + _healthComponent.RoundMaxHp;
-            int armors = _healthComponent.Armors;
+                                + _owner.RoundMaxHp;
+            int armors = _owner.Armors;
             ArmorAmount.text = armors == 0 ? string.Empty : armors.ToString();
         }
 
         public void UpdateDamageBar()
         {
-            if (_healthComponent.IsDead)
+            if (!_owner || _owner.IsDead)
             {
                 return;
             }
 
-            CurrentRatio = _healthComponent.GetHpRatio();
+            CurrentRatio = _owner.GetHpRatio();
             HealthBarImage.fillAmount = CurrentRatio;
-            WhiteBarImage.fillAmount = _healthComponent.GetArmorRatio();
-            HealthAmount.text = _healthComponent.RoundHp
+            WhiteBarImage.fillAmount = _owner.GetArmorRatio();
+            HealthAmount.text = _owner.RoundHp
                                 + "/"
-                                + _healthComponent.RoundMaxHp;
-            int armors = _healthComponent.Armors;
+                                + _owner.RoundMaxHp;
+            int armors = _owner.Armors;
             ArmorAmount.text = armors == 0 ? string.Empty : armors.ToString();
             StartCoroutine(UpdateDamageDelay_Cro(Delay));
         }

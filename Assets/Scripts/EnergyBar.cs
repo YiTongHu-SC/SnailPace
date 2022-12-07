@@ -10,11 +10,11 @@ namespace DefaultNamespace
     {
         [SerializeField] private Image EnergyBarImage;
         [SerializeField] private TextMeshProUGUI ShowEnergyAmount;
-        private EnergyComponent _energyComponent;
+        private EnergyComponent _owner;
 
-        private void Awake()
+        public void Initialize(EnergyComponent owner)
         {
-            _energyComponent = GetComponentInParent<EnergyComponent>();
+            _owner = owner;
         }
 
         private void Update()
@@ -24,13 +24,11 @@ namespace DefaultNamespace
 
         private void UpdateBar()
         {
-            if (_energyComponent)
-            {
-                EnergyBarImage.fillAmount = _energyComponent.EnergyRatio;
-                ShowEnergyAmount.text = _energyComponent.CurrentEnergyAmount
-                                        + "/"
-                                        + _energyComponent.MaxEnergyAmount;
-            }
+            if (!_owner) return;
+            EnergyBarImage.fillAmount = _owner.EnergyRatio;
+            ShowEnergyAmount.text = _owner.CurrentEnergyAmount
+                                    + "/"
+                                    + _owner.MaxEnergyAmount;
         }
     }
 }

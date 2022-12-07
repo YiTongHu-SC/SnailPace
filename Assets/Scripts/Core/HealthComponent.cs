@@ -23,7 +23,6 @@ namespace Core
         public bool IsWithArmor => Armors != 0;
         public float ArmorCountDown => _armorTimer / RemoveArmorAfter;
         public bool IsDead => _isDead;
-
         private float _armorTimer;
         private const float RemoveArmorAfter = 3;
 
@@ -32,8 +31,21 @@ namespace Core
         private void Awake()
         {
             _owner = GetComponent<Character>();
-            _healthBar = GetComponentInChildren<HealthBar>();
             _maxHp = MaxHp;
+        }
+
+        public void SetBar(HealthBar bar)
+        {
+            _healthBar = bar;
+            if (_healthBar)
+            {
+                _healthBar.gameObject.SetActive(ShowHealthBar);
+                // _healthBar.Initialize(this);
+            }
+            else
+            {
+                ShowHealthBar = false;
+            }
         }
 
         public void Init()
@@ -41,15 +53,6 @@ namespace Core
             _isDead = false;
             ResetArmorTimer();
             ResetHp();
-            if (_healthBar)
-            {
-                _healthBar.gameObject.SetActive(ShowHealthBar);
-                _healthBar.Initialize();
-            }
-            else
-            {
-                ShowHealthBar = false;
-            }
         }
 
         public void RemoveAllArmors()

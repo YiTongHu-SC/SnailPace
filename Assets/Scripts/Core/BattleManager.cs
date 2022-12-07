@@ -14,6 +14,8 @@ namespace Core
 {
     public class BattleManager : MMSingleton<BattleManager>
     {
+        [SerializeField] private StatusBox PlayerStatus;
+        [SerializeField] private StatusBox EnemyStatus;
         [SerializeField] public EnemyData EncounterEnemyData;
         [SerializeField] private string[] InitSkills;
         [SerializeField] private SkillReward SkillRewardPref;
@@ -85,6 +87,7 @@ namespace Core
 
             var hero = LeanPool.Spawn(HeroPrefab, SpawnSocket.position, Quaternion.identity);
             SetHero(hero.GetComponent<Character>());
+            PlayerStatus.Initialize(Hero);
             Hero.TriggerIdle();
             ContinueButton.SetActive(false);
             SkillView.gameObject.SetActive(false);
@@ -222,6 +225,8 @@ namespace Core
         private void OnRunEncounter(Character target)
         {
             _encounterEnemy = target;
+            EnemyStatus.Initialize(target);
+            EnemyStatus.ShowBox(true);
             Hero.BehaviourController.SetTarget(EncounterEnemy);
             Hero.BehaviourController.InitializeOnCombat();
             _encounterEnemy.BehaviourController.SetTarget(Hero);
@@ -236,6 +241,8 @@ namespace Core
         private void OnRunReward()
         {
             ChoosePanel.DOFade(0.5f, 0.3f);
+            // EnemyStatus.Initialize(null);
+            EnemyStatus.ShowBox(false);
         }
 
         private void ResetBattlePanel()
