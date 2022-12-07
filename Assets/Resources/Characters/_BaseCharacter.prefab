@@ -343,6 +343,7 @@ MonoBehaviour:
   CharacterType: 1
   Name: Slime
   Portrait: {fileID: 6140105974655100055}
+  Level: 0
 --- !u!114 &2739630090002508196
 MonoBehaviour:
   m_ObjectHideFlags: 0
