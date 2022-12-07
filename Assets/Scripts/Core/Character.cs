@@ -51,7 +51,6 @@ namespace Core
         public EnergyComponent Energy => _energyComponent;
         public BehaviourController BehaviourController => _behaviourController;
         public float CurrentEnergy => _energyComponent.Current;
-        public bool HasEnergy => _energyComponent;
         public bool IsDead => _health.IsDead;
 
         public delegate void CallBack();
@@ -218,12 +217,6 @@ namespace Core
             if (_speedComponent)
             {
                 _speedComponent.SetSpeed(GameManager.Instance.InitSpeed);
-            }
-
-            if (BehaviourController.Intent)
-            {
-                _behaviourController.Intent.SetIntent(Intent.None);
-                _behaviourController.IsOnCountDown = false;
             }
 
             if (_enemyAnimator)

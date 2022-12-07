@@ -14,6 +14,7 @@ namespace Core
 {
     public class BattleManager : MMSingleton<BattleManager>
     {
+        [SerializeField] public IntentComponent IntentComponent;
         [SerializeField] private StatusBox PlayerStatus;
         [SerializeField] private StatusBox EnemyStatus;
         [SerializeField] public EnemyData EncounterEnemyData;
@@ -227,6 +228,7 @@ namespace Core
             _encounterEnemy = target;
             EnemyStatus.Initialize(target);
             EnemyStatus.ShowBox(true);
+            IntentComponent.Initialize(target);
             Hero.BehaviourController.SetTarget(EncounterEnemy);
             Hero.BehaviourController.InitializeOnCombat();
             _encounterEnemy.BehaviourController.SetTarget(Hero);

@@ -153,13 +153,13 @@ namespace DefaultNamespace
                 return;
             }
 
-            if (Owner.HasEnergy)
+            if (Owner.CharacterType == CharacterType.Hero)
             {
                 CheckEnergy();
             }
         }
 
-        public bool TryCostEnergy()
+        private bool TryCostEnergy()
         {
             bool ok = CheckEnergy();
             if (ok)

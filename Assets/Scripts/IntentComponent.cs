@@ -19,28 +19,25 @@ namespace DefaultNamespace
     public class IntentComponent : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI AttackText;
-        [SerializeField] private TextMeshProUGUI CountDownText;
-        [SerializeField] private GameObject CountDown;
-        [SerializeField] private Image CountDownImage;
         [SerializeField] private Image IntentAttack;
         [SerializeField] private Image IntentDefence;
         [SerializeField] private Image IntentUnKnown;
-        private BehaviourController _behaviourController;
         private Dictionary<Intent, Image> _intents;
         private Intent _currentIntent;
+        private Character _owner;
 
         private void Awake()
         {
-            _behaviourController = GetComponentInParent<BehaviourController>();
             _intents = new Dictionary<Intent, Image>();
             _intents.Add(Intent.Attack, IntentAttack);
             _intents.Add(Intent.Defence, IntentDefence);
             _intents.Add(Intent.UnKnown, IntentUnKnown);
         }
 
-        public void Init()
+        public void Initialize(Character owner)
         {
-            AttackText.text = String.Empty;
+            _owner = owner;
+            SetIntent(Intent.None);
         }
 
         public void SetIntent(Intent intent)
@@ -59,23 +56,17 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            if (_behaviourController.IsOnCountDown)
+            // Refresh Attack Num
+            if (_owner && !_owner.IsDead)
             {
-                CountDown.SetActive(true);
-                CountDownImage.fillAmount = _behaviourController.CountDownRatio;
-                CountDownText.text = _behaviourController.CountDown.ToString();
                 if (_currentIntent == Intent.Attack)
                 {
-                    AttackText.text = _behaviourController.CurrentSkill.GetDamage().ToString();
+                    AttackText.text = _owner.BehaviourController.CurrentSkill.GetDamage().ToString();
                 }
                 else
                 {
                     AttackText.text = string.Empty;
                 }
-            }
-            else
-            {
-                CountDown.SetActive(false);
             }
         }
     }

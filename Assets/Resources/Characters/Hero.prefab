@@ -7,13 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487195662664712386, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
+      propertyPath: IsAutoRecovery
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1236262991147765890, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1514475577539608823, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2784873082225910610, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_Layer
@@ -37,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5145191297064839804, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5661890569281737781, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: Name
@@ -46,6 +50,10 @@ PrefabInstance:
     - target: {fileID: 5661890569281737781, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: CharacterType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943824946930573707, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6140105974655100054, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_SpriteKey
@@ -113,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8416081440247500314, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8687921901995452122, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -138,19 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61b5aa0d6b41f493c16e6b767ced7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4222204628142695406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2148605894072053727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1949278fd269459a9d8740ded19db45f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxEnergy: 100
 --- !u!1 &7945109672808708253 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2784873082225910610, guid: 4b65ea96d95e5a749aab114592d8de97, type: 3}

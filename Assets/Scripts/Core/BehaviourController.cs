@@ -14,11 +14,6 @@ namespace Core
         private EnergyComponent _energy;
         private HashSet<SkillComponent> _skills;
         private BehaviourTree _behaviourTree;
-        private IntentComponent _intentComponent;
-        public IntentComponent Intent => _intentComponent;
-        public int CountDown { get; set; }
-        public bool IsOnCountDown { get; set; }
-        public float CountDownRatio { get; set; }
         public HashSet<SkillComponent> CurrentSkills => _skills;
         public SkillComponent _currentSkill;
         public SkillComponent CurrentSkill => _currentSkill;
@@ -27,7 +22,6 @@ namespace Core
         {
             TryGetComponent(out _owner);
             TryGetComponent(out _energy);
-            _intentComponent = GetComponentInChildren<IntentComponent>();
             if (_behaviourTreeOwner)
             {
                 _behaviourTreeOwner.updateMode = Graph.UpdateMode.Manual;
@@ -44,11 +38,6 @@ namespace Core
             {
                 skill.SetOwner(_owner);
                 _skills.Add(skill);
-            }
-
-            if (_intentComponent)
-            {
-                _intentComponent.Init();
             }
         }
 

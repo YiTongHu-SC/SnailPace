@@ -2,6 +2,7 @@
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;
+using UnityEngine;
 
 namespace DefaultNamespace.SkillTasks
 {
@@ -22,14 +23,11 @@ namespace DefaultNamespace.SkillTasks
         {
             if (elapsedTime >= waitTime.value)
             {
-                Owner.BehaviourController.IsOnCountDown = false;
                 EndAction(finishStatus == CompactStatus.Success ? true : false);
             }
             else
             {
-                Owner.BehaviourController.IsOnCountDown = true;
-                Owner.BehaviourController.CountDownRatio = 1 - elapsedTime / waitTime.value;
-                Owner.BehaviourController.CountDown = 1 + (int)(waitTime.value - elapsedTime);
+                Owner.Energy.SetEnergy(elapsedTime / waitTime.value);
             }
         }
 
@@ -42,7 +40,8 @@ namespace DefaultNamespace.SkillTasks
         protected override void OnExecute()
         {
             base.OnExecute();
-            Owner.BehaviourController.Intent.SetIntent(ShowIntent);
+            Owner.Energy.ResetEnergy(waitTime.value * 25.0f);
+            BattleManager.Instance.IntentComponent.SetIntent(ShowIntent);
         }
     }
 }
