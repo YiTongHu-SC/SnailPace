@@ -21,4 +21,4 @@
 
 ## 链接
 
-{{< icon "itch-io" >}} [itch-io 《蜗速前进》Snail's Pace](https://yitonghu.itch.io/snailspace)
+- [itch-io 《蜗速前进》Snail's Pace](https://yitonghu.itch.io/snailspace)
